@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Persona</title>
+    <style>
+        header {
+            text-align: center;
+        }
+
+        form {
+            margin-top: 15px;
+            display:flex;
+            flex-direction: column;
+            align-content: flex-start;
+            justify-content: center;
+        }
+
+        main {
+            margin-top: 15px;
+            text-align: center;
+            display:flex;
+            flex-direction: column;
+            align-content: flex-start;
+            justify-content: center;
+        }
+
+        .back {
+            font-size: 25px;
+            font-weight: 800;
+        }
+
+        .campo {
+            margin-top: 15px;
+            display:flex;
+            align-content: center;
+            justify-content: center;
+            align-items: center;
+            column-gap: 10px;
+
+        }
+
+        .error {
+            display:flex;
+            border: none;
+            color:red;
+            width: 100%;
+            align-content: center;
+            justify-content: center;
+        }
+
+        .acciones {
+            margin-top: 15px;
+            display:flex;
+            align-content: center;
+            justify-content: center;
+            align-items: center;
+            column-gap: 25px;
+        }
+
+        .input {
+            width: 250px;
+            height: 25px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: 700;
+        }
+    </style>
+
+</head>
+<body>
+    <header>
+        <h1>REGISTRO PERSONA</h1>
+    </header>
+
+    <form th:action="@{/Persona}" th:object="${persona}" method="post">
+        <section class="campo">
+            <lable for="txtNombre">Nombre: </lable>
+            <input class="input" id="txtNombre" value="" placeholder="Ingresa Nombre" th:field="*{nombre}">
+        </section>
+        <section class="error">
+            <p th:if="${#fields.hasErrors('nombre')}" th:errorclass="error" th:errors="*{nombre}"></p>
+        </section>
+        <section class="campo">
+            <lable for="txtTelefono">Telefono: </lable>
+            <input class="input" id="txtTelefono" value="" placeholder="(##)-####-####" th:field="*{telefono}"/>
+        </section>
+        <section class="error">
+            <p th:if="${#fields.hasErrors('telefono')}" th:errorclass="error" th:errors="*{telefono}"></p>
+        </section>
+        <section class="acciones">
+            <div><button type="submit" id="btnGuardar" th:value="Guardar" >GUARDAR</button></div>
+            <div><button type="button" id="btnLimpiar" onclick="limpiarCampos();">Limpiar</button></div>
+        </section>
+    </form>
+
+    <section>
+        <ul>
+            <li th:each="persona : ${personasLista}" th:text="${ persona.getNombre() + ' ' + persona.getTelefono()}"  ></li>
+        </ul>
+    </section>
+
+    <script>
+        function limpiarCampos(){
+            let entradas = document.querySelectorAll(".input");
+            let errores = document.getElementsByTagName("p");
+            entradas.forEach(el => {
+                 el.value = "";
+            });
+            errores.forEach(el => {
+                el.value = "";
+            });
+        }
+    </script>
+</body>
+</html>

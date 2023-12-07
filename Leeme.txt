@@ -1,0 +1,5 @@
+proyecto: fizzbuzz = postwork3
+proyecto: PostworkS4 = postworks 4 y 5
+proyecto: PostworkS6 = postworks 6
+proyecto: PostworkS7 = postworks 7
+proyecto: PostworkS8 = postworks 8

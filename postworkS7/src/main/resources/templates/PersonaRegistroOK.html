@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Registro Persona OK</title>
+    <link rel="stylesheet" href="../static/Persona.css">
+
+</head>
+<body>
+<header>
+    <header>
+        <h1>REGISTRO EXITOSO</h1>
+    </header>
+
+    <section>
+        <a class="back" href="http://localhost:8080/" >REGRESAR</a>
+    </section>
+
+    <main>
+        <section>
+            <ul>
+                <li th:each="persona : ${personasLista}" th:text="${ persona.getNombre() + ' ' + persona.getTelefono()}"  ></li>
+            </ul>
+        </section>
+    </main>
+
+</header>
+</body>
+</html>
